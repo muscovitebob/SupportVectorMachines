@@ -27,13 +27,22 @@ We can vary $e$ and also the $C$ penalty parameter, increasing which places more
 \subsection{Support vector machine for function estimation}
 Using the \texttt{uiregress} graphical command, we can construct toy datasets. 
 
-First, let us create a dataset where a linear classifier is optimal. One such example is a close cloud of points that are intended to have come from a straight line, which we construct to have 43 points. Increasing $e$ above $0.25$ leaves no support vectors, under the number of support vectors goes up to the number of training points, when $C$ is held fixed at infinity. Decreasing $C$ leads the line to align with the principal direction of the cloud. Setting $C=0.5$ and $e=0.1$ leads to a good fit. Noticeably, the sparsity property comes into play here. By setting the $e$ parameter above zero, we ignore errors smaller than this value. Hence, we only use a subset of the training points, achieving a measure of sparseness. This is similar to the $\epsilon$-insensitive loss function in standard SVM \cite{valyonRobustLSSVMRegression2007}.
+First, let us create a dataset where a linear classifier is optimal. One such example is a close cloud of points that are intended to have come from a straight line, which we construct to have 43 points. Increasing $e$ above $0.25$ leaves no support vectors, under the number of support vectors goes up to the number of training points, when $C$ is held fixed at infinity. Decreasing $C$ leads the line to align with the principal direction of the cloud. Setting $C=0.5$ and $e=0.1$ leads to a good fit, shown in \ref{fig:uiregress}. Noticeably, the sparsity property comes into play here. By setting the $e$ parameter above zero, we ignore errors smaller than this value. Hence, we only use a subset of the training points, achieving a measure of sparseness. This is similar to the $\epsilon$-insensitive loss function in standard SVM \cite{valyonRobustLSSVMRegression2007}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \includegraphics[width=3in]{uiregressFinal.png}
-  \caption{A linear least squares classifier fitted to a data cloud of 43 points with parameters $C=0.5$ and $e=0.1$. Given these parameters, only 23 points are used as support vectors, labelled in red.}
+  \caption{A linear least squares regression fitted to a data cloud of 43 points with parameters $C=0.5$ and $e=0.1$. Given these parameters, only 23 points are used as support vectors, labelled in red.}
   \label{fig:uiregress}
 \end{figure}
+
+A more challenging toy dataset is one that a linear kernel cannot approximate well. Let us construct one with 46 points that is wave-like. Here, a polynomial kerne of third degree, with $C=3$ and $e=0.06$, fits quite well with quite some sparsity.
+
+\begin{figure}[h!]
+  \includegraphics[width=3in]{uiregressPoly.png}
+  \caption{A third degree polynomial least squares regression fitted to a data wave of 46 points with parameters $C=3$ and $e=0.06$. Given these parameters, only 26 points are used as support vectors, labelled in red.}
+  \label{fig:uiregressPoly}
+\end{figure}
+
 
 \subsection{Sinc function}
 We can construct an example dataset using a noisy sinc function. Sinc is thus the true data generating process, and the task of an LS-SVM classifier will be to approximate this function without overfitting to replicate the noise.x
