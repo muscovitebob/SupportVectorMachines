@@ -1,6 +1,8 @@
 rng('default');
 rng(333);
 
+% sinc func regression
+
 X = transpose(-3:0.01:3);
 Y = sinc(X) + 0.1 * randn(length(X), 1);
 Xtrain = X(1:2: end); Ytrain = Y(1:2: end);
@@ -43,6 +45,7 @@ hold off;
 [gamGrid, sigGrid, costGrid] = tunelssvm({Xtrain, Ytrain, 'f', ...
     [], [], 'RBF_kernel'}, 'gridsearch', 'crossvalidatelssvm', {10, 'mse'});
 
+% bayesian 
 sig = 0.4; gam = 10;
 modelSpecBay = {Xtrain, Ytrain, 'f', gam, sig}
 crit_Ls = arrayfun(@(level) bay_lssvm(modelSpecBay, level), [1 2 3])
@@ -50,6 +53,7 @@ bayOptims = arrayfun(@(level) bay_optimize(modelSpecBay, level), [1 2 3], 'Unifo
 
 sigErrs = bay_errorbar({Xtrain, Ytrain, 'f', bayOptims{2}.gam, bayOptims{3}.kernel_pars}, 'figure')
 
+% robust ls-svm
 dataGeneratingFun = @(X) sinc(X) + 0.1 * rand(size(X));
 X = transpose(-6:0.2:6); Y = dataGeneratingFun(X);
 outSet1 = [15 17 19]; outSet2 = [41 44 46];
@@ -60,4 +64,9 @@ Model = initlssvm(X, Y, 'f', [], [],'RBF_kernel');
 tunedNaiveModel = tunelssvm(Model, 'simplex', ...
     'crossvalidatelssvm', {10, 'mse'});
 plotlssvm(tunedNaiveModel)
+
+% time series prediction
+% logmap
+
+
 
