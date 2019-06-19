@@ -71,12 +71,65 @@ plotlssvm(tunedNaiveModel)
 load logmap.mat
 
 order = 10;
-X = windowsize(Z, 1:(order+1));
-Y = X(:, end);
-X = X(:, 1:order);
+Xinit = windowize(Z, 1:(order+1));
+Y = Xinit(:, end);
+X = Xinit(:, 1:order);
 
 gam = 10; sig = 10;
 timeSeriesModel1 = trainlssvm({X, Y, 'f', gam, sig});
 
+Xs = Z(end - order + 1:end, 1);
 
+nb = length(Ztest);
+prediction = predict({X, Y, 'f', gam, sig2}, Xs , nb);
+
+figure;
+hold on;
+plot(Ztest , 'k');
+plot(prediction, 'r');
+hold off;
+
+modelSpecBayLog = {X, Y, 'f', gam, sig}
+crit_Ls = arrayfun(@(level) bay_lssvm(modelSpecBayLog, level), [1 2 3])
+bayOptims = arrayfun(@(level) bay_optimize(modelSpecBayLog, level), [1 2 3], 'UniformOutput', false);
+prediction2 = predict(bayOptims{3}, Xs, nb)
+
+gam = 2.4; sig = 24.2154;
+
+figure;
+hold on;
+plot(Ztest , 'k');
+plot(prediction2, 'r');
+hold off;
+
+[gamSimp, sigSimp, costSimp] = tunelssvm({X, Y, 'f', ...
+    [], [], 'RBF_kernel'}, 'simplex', 'crossvalidatelssvm', {10, 'mse'});
+
+prediction3 = predict({X, Y, 'f', gamSimp, sigSimp}, Xs , nb);
+figure;
+hold on;
+plot(Ztest , 'k');
+plot(prediction3, 'r');
+hold off;
+
+% grid search over the orders
+
+orderCell = {5 10 20 30 40 50 60 70 80 90 100};
+
+windowizedData = cellfun(@(order) {order, windowize(Z, 1:(order+1))}, orderCell, 'UniformOutput', false);
+
+Yes = cellfun(@(tuple) tuple{2}(:, end), windowizedData, 'UniformOutput', false);
+Xes = cellfun(@(tuple) tuple{2}(:, 1:tuple{1}), windowizedData, 'UniformOutput', false);
+
+Xses = cellfun(@(order) Z(end - order + 1:end, 1), orderCell, 'UniformOutput', false);
+
+YandXandXses = arrayfun(@(index) {Yes{index} Xes{index} Xses{index}}, 1:length(orderCell), 'UniformOutput', false);
+
+predictions = cellfun(@(cell) predict({cell{2} , cell{1} , 'f', ...
+    gam, sig}, cell{3} ,nb), YandXandXses, 'UniformOutput', false);
+
+hold on;
+plot(Ztest , 'k');
+plot(predictions{10}, 'r');
+hold off;
 

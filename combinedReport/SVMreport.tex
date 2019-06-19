@@ -118,7 +118,7 @@ It seems the fifth model fits the best on the test case. We may visualise the fi
 
 \begin{figure}[h!]
   \includegraphics[width=3in]{fifthModelPlot.png}
-  \caption{A plot of LS-SVM RBF kernel predictor performance over a range of parameters, on the test set.}
+  \caption{A plot of LS-SVM RBF kernel predictor number five out of all evaluated.}
   \label{fig:fifthModelPlot}
 \end{figure}
 
@@ -171,7 +171,7 @@ The model is shown in Fig.~\ref{fig:bayesianErrorbars}.
 
 \begin{figure}[h!]
   \includegraphics[width=3in]{bayesianErrorbars.png}
-  \caption{The most probable model derived using Bayesian inference.}
+  \caption{The most probable model derived using Bayesian inference, with computed error bars.}
   \label{fig:bayesianErrorbars}
 \end{figure}
 
@@ -186,10 +186,79 @@ Y = sinc (X(: ,1)) + 0.1.* randn(100 ,1);
 
 Selected here are $1$ and $2$ and the ranking is $1, 2, 3$. This means that the first two dimensions of the input space are the most important, and the ranking of importance confirms this, with the third dimension being the least important.
 
-This procedure has been shown to be equivalent to doing Maximum A Posteriori estimation, so an equivalent approach to this is possible using the \texttt{crossvalidate} function \cite{wipfNewViewAutomatic}.
-
+This procedure has been shown to be equivalent to doing maximum a posteriori estimation, so an equivalent approach to this is possible using the \texttt{crossvalidate} function \cite{wipfNewViewAutomatic}.
 
 \subsection{Robust regression}
+If the data are noisy, robust regression can be used to attempt to disregard the noise and/or outliers to fit closer to the underlying function. We construct a similar sinc dataset to demonstrate this, this time adding more noise.
+
+\begin{lstlisting}[style=Matlab-editor]
+dataGeneratingFun = @(X) sinc(X) + 0.1 * rand(size(X));
+X = transpose(-6:0.2:6); Y = dataGeneratingFun(X);
+outSet1 = [15 17 19]; outSet2 = [41 44 46];
+Y(outSet1) = 0.7 * 0.3 + rand(size(outSet1)); Y(outSet2) = 1.5 * 0.2 + rand(size(outSet2)); 
+\end{lstlisting}
+
+The resulting dataset is shown in Fig.~\ref{fig:noisyData}.
+
+\begin{figure}[h!]
+  \includegraphics[width=3in]{noisyData.png}
+  \caption{A noisy sinc dataset.}
+  \label{fig:noisyData}
+\end{figure}
+
+What happens if we try naively fitting on these data? Fig.~\ref{fig:naiveNonRob} demonstrates.
+
+\begin{lstlisting}[style=Matlab-editor]
+Model = initlssvm(X, Y, 'f', [], [],'RBF_kernel');
+tunedNaiveModel = tunelssvm(Model, 'simplex', ...
+    'crossvalidatelssvm', {10, 'mse'});
+\end{lstlisting}
+
+\begin{figure}[h!]
+  \includegraphics[width=3in]{naiveNonRob.png}
+  \caption{The result of fitting a non-robust LS-SVM model to the noisy sinc data.}
+  \label{fig:naiveNonRob}
+\end{figure}
+
+
+Within the outlier regions, the estimation is very far from the true sinc function, being highly influenced by just three points in each region. This also has effects outside the outlier regions. 
+By contrast, a robust model should minimize the influence of support vectors with big errors on the final function estimate. A robust Huber's loss function model on this data will generate warning about a lack of inverse but will nonetheless produce a fit. As can be seen in Fig.~\ref{fig:whuberRobust}, this is very satisfactory and practically ignores the outliers.
+
+\begin{figure}[h!]
+  \includegraphics[width=3in]{whuberRobust.png}
+  \caption{An LS-SVM regression with a Huber robust loss function on the noisy sinc data.}
+  \label{fig:whuberRobust}
+\end{figure}
+
+Here the MSE function is used in the naive formulation - since the RMSE will square the residuals before summing them, this amplifies the influence of outliers. By contrast, MAE used in the robust regression penalizes large errors.
+
+\subsection{Time Series Prediction with Logmap Data}
+Time series prediction as done here is nonlinear autoregression exogenous (NARX) modelling. That means that we create a model that uses both the previous values of the dimension of interest and some other, exogenous, variables to predict the future.
+
+This time series dataset contains a number of points in time. The test set is defined to be the points at the last 50 timepoints. After loading the dataset, we can attempt naive prediction of these test points.
+
+\begin{lstlisting}[style=Matlab-editor]
+order = 10;
+X = windowize(Z, 1:(order+1));
+Y = X(:, end);
+X = X(:, 1:order);
+gam = 10; sig = 10;
+timeSeriesModel1 = trainlssvm({X, Y, 'f', gam, sig});
+Xs = Z(end - order + 1:end, 1);
+nb = length(Ztest);
+prediction = predict({X, Y, 'f', gam, sig2}, Xs , nb);
+\end{lstlisting}
+
+This yields predictions on the test set as depicted in Fig.~\ref{fig:logmapNaive}. Even discounting the fact that time series prediction is notoriously difficult, this is very poor.
+
+\begin{figure}[h!]
+  \includegraphics[width=3in]{logmapNaive.png}
+  \caption{The result of applying a non-optimised time series prediction model to the logmap dataset, with the test set in black and the predictions in red.}
+  \label{fig:logmapNaive}
+\end{figure}
+ 
+
+
 \bibliographystyle{acm}
 \bibliography{SVMbib}
 \end{document}
