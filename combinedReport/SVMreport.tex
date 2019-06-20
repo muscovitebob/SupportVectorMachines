@@ -71,7 +71,7 @@ Where each $z_i \leftarrow N(\mu, \sigma)$.
 
 We can attempt approximation using the RBF kernel, iterating over a small parameter space of the RBF parameters, that is, values of $\gamma$ (confusingly, also referred to as $\sigma$) and $C$ (strictly speaking not an actual kernel parameter since it comes from the LS-SVM formulation).
 
-\begin{lstlisting}[style=Matlab-editor]
+\begin{lstlisting}[style=Matlab-editor, frame=single]
 gams = [10, 10e3, 10e6]; sigmas = [0.01, 1, 100];
 [sigmasMesh, gamsMesh] = meshgrid(sigmas, gams);
 parameterSpace = num2cell([gamsMesh(:), sigmasMesh(:)], 2);
@@ -79,7 +79,7 @@ parameterSpace = num2cell([gamsMesh(:), sigmasMesh(:)], 2);
 
 We can then evaluate model performance for each combination of these parameters.
 
-\begin{lstlisting}[style=Matlab-editor]
+\begin{lstlisting}[style=Matlab-editor, frame=single]
 perfList = cellfun(@(cell) crossvalidate({ Xtrain , Ytrain , 'f', ...
     cell(:, 1), cell(:, 2), 'RBF_kernel'}, 10, 'mse'), parameterSpace);
 \end{lstlisting}
@@ -97,7 +97,7 @@ It seems that the fifth and sixth models are the best fitting on training set. T
 
 We can choose between them, as well as the first two models which are relatively well fitting, using the AUC of test set performance.
 
-\begin{lstlisting}[style=Matlab-editor]
+\begin{lstlisting}[style=Matlab-editor, frame=single]
 niceParams = cellfun(@(index) parameterSpace{index}, {1 2 5 6}, 'UniformOutput', false);
 niceModelSpecs = cellfun(@(cell) { Xtrain , Ytrain , 'f', ...
     cell(:, 1), cell(:, 2), 'RBF_kernel'}, niceParams, 'UniformOutput', false);
@@ -131,7 +131,7 @@ Since the RBF kernel function estimation SVM is quite flexible, there should exi
 
 We can compare the resulting model to automatic parameter tuning.
 
-\begin{lstlisting}[style=Matlab-editor]
+\begin{lstlisting}[style=Matlab-editor, frame=single]
 [gamSimp, sigSimp, costSimp] = tunelssvm({Xtrain, Ytrain, 'f', ...
     [], [], 'RBF_kernel'}, 'simplex', 'crossvalidatelssvm', {10, 'mse'});
  [gamGrid, sigGrid, costGrid] = tunelssvm({Xtrain, Ytrain, 'f', ...
@@ -159,7 +159,7 @@ This two-step methodology is further extended for regression problems into a thr
 
 We can do this:
 
-\begin{lstlisting}[style=Matlab-editor]
+\begin{lstlisting}[style=Matlab-editor, frame=single]
 sig = 0.4; gam = 10;
 modelSpecBay = {Xtrain, Ytrain, 'f', gam, sig}
 crit_Ls = arrayfun(@(level) bay_lssvm(modelSpecBay, level), [1 2 3])
@@ -184,7 +184,7 @@ The model is shown in Fig.~\ref{fig:bayesianErrorbars}.
 \subsection{Automatic Relevance Determination}
 Bayesian inference can further be used to remove irrelevant features and obtain a sparser subset of explanatory features. This weighs each feature (dimension) of the input space and optimises the weights at the third level of Bayesian inference.
 
-\begin{lstlisting}[style=Matlab-editor]
+\begin{lstlisting}[style=Matlab-editor, frame=single]
 X = 6.* rand(100 , 3) - 3;
 Y = sinc (X(: ,1)) + 0.1.* randn(100 ,1);
 [selected, ranking] = bay_lssvmARD ({X, Y,'f', bayOptims{2}.gam, bayOptims{3}.kernel_pars});
@@ -197,7 +197,7 @@ This procedure has been shown to be equivalent to doing maximum a posteriori est
 \subsection{Robust regression}
 If the data are noisy, robust regression can be used to attempt to disregard the noise and/or outliers to fit closer to the underlying function. We construct a similar sinc dataset to demonstrate this, this time adding more noise.
 
-\begin{lstlisting}[style=Matlab-editor]
+\begin{lstlisting}[style=Matlab-editor, frame=single]
 dataGeneratingFun = @(X) sinc(X) + 0.1 * rand(size(X));
 X = transpose(-6:0.2:6); Y = dataGeneratingFun(X);
 outSet1 = [15 17 19]; outSet2 = [41 44 46];
@@ -215,7 +215,7 @@ The resulting dataset is shown in Fig.~\ref{fig:noisyData}.
 
 What happens if we try naively fitting on these data? Fig.~\ref{fig:naiveNonRob} demonstrates.
 
-\begin{lstlisting}[style=Matlab-editor]
+\begin{lstlisting}[style=Matlab-editor, frame=single]
 Model = initlssvm(X, Y, 'f', [], [],'RBF_kernel');
 tunedNaiveModel = tunelssvm(Model, 'simplex', ...
     'crossvalidatelssvm', {10, 'mse'});
@@ -271,7 +271,7 @@ Time series prediction as done here is nonlinear autoregression exogenous (NARX)
 
 This time series dataset contains a number of points in time. The test set is defined to be the points at the last 50 timepoints. After loading the dataset, we can attempt naive prediction of these test points.
 
-\begin{lstlisting}[style=Matlab-editor]
+\begin{lstlisting}[style=Matlab-editor, frame=single]
 order = 10;
 X = windowize(Z, 1:(order+1));
 Y = X(:, end);
@@ -292,7 +292,39 @@ This yields predictions on the test set as depicted in Fig.~\ref{fig:logmapNaive
   \label{fig:logmapNaive}
 \end{figure}
  
+ Instead, we may use grid search to select a better model. First, use Bayesian inference to select good gam and sig values. Then, we do the grid search.
+ 
+ \begin{lstlisting}[style=Matlab-editor, frame=single]
+ gam = 2.4; sig = 24.2154; nb = length(Ztest);
+ orderCell = {5 10 20 30 40 50 60 70 80 90 100};
+windowizedData = cellfun(@(order) {order, windowize(Z, 1:(order+1))}, orderCell, 'UniformOutput', false);
+Yes = cellfun(@(tuple) tuple{2}(:, end), windowizedData, 'UniformOutput', false);
+Xes = cellfun(@(tuple) tuple{2}(:, 1:tuple{1}), windowizedData, 'UniformOutput', false);
+Xses = cellfun(@(order) Z(end - order + 1:end, 1), orderCell, 'UniformOutput', false);
+YandXandXses = arrayfun(@(index) {Yes{index} Xes{index} Xses{index}}, 1:length(orderCell), 'UniformOutput', false);
+predictions = cellfun(@(cell) predict({cell{2} , cell{1} , 'f', ...
+    gam, sig}, cell{3} ,nb), YandXandXses, 'UniformOutput', false);
+   \end{lstlisting}
+  
+One of the better resulting models is shown in Fig.~\ref{fig:model8Logmap}. Here we see that prediction is very good for some time points and remains relatively poor for others.
+   
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{model8Logmap.png}
+  \caption{One of the models resulting from grid search, with the model parameters initially coming from Bayesian inference, with the test set in black and the predictions in red.}
+  \label{fig:model8Logmap}
+\end{figure}
 
+\subsection{Time Series Prediction with Santa Fe Data}
+
+We may use the same strategy to optimise gam, sig and the order parameters on the Santa Fe dataset. Here a naive fit without optimising parameters results in a bad model. Bayesian inference finds the values $gam=62.47$ and $sig=9.25$ to be good, and we proceed to do grid search as previously, over the same magnitude of orders. At $order=50$, we already have quite good approximation, as can be seen in Fig.~\ref{fig:order50Santa}.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{order50Santa.png}
+  \caption{The result of first optimising parameters using Bayesian inference and then doing a grid search of model orders with the Santa Fe dataset, with the test set in black and the predictions in red.}
+  \label{fig:order50Santa}
+\end{figure}
 
 \bibliographystyle{acm}
 \bibliography{SVMbib}
