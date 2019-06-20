@@ -4,7 +4,7 @@ close all
 
 X = 3.*randn(100,2);
 ssize = 10;
-sig2 = 1;
+sig2 = 0.5;
 subset = zeros(ssize,2);
 for t = 1:100,
 

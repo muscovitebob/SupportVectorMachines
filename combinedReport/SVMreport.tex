@@ -400,6 +400,53 @@ Attempting spectral clustering with the example interleaved rings dataset, the i
   \label{fig:rings0001}
 \end{figure}
 
+\subsection{Fixed size LS-SVM}
+Projecting data points onto a higher dimensional feature space required representing the data as a Gramian matrix, as described previously. This becomes problematic with large amounts of data because the Gramian matrix grows to be large, and further computations may involve very expensive matrix inversions. Previously we have mentioned using Lanczos bidiagonalisation, which is a type of low rank approximation. Nystrom is another such approximation method. These allow us to bypass using the full Gramian matrix by substituting a low rank approximation of it into our calculations - hence we use only a smaller block of the Gramian. In order to actually create this approximation we require a selection of training points to be pre-specified. This operates on the primal representation of an LS-SVM model. By using a block matrix we thus avoid the more expensive calculations on the full Gramian.
+
+The choice between operating on the primal or dual representation in the case our mapping is known and not infinite dimensional depends mainly on the dimension of the set of weights in the primal and dual representation. If the dimension in primal is small but the dimension in dual is large it is computationally more convenient to use the primal formulation, and vice versa.
+
+Modifying the RBF kernel parameter $sig2$ in FS-LS-SVM appears to result in different subsets of points being chosen. Namely, it appears that lower values result in points closer to the center of the data clouds being chosen, while higher values result in points more on the edge. This is seen by comparing Fig.~\ref{fig:FSsig01} and \ref{fig:FSsig100}.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{FSsig01.png}
+  \caption{FS-LS-SVM using the RBF kernel with $sig2=0.1$.}
+  \label{fig:FSsig01}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{FSsig100.png}
+  \caption{FS-LS-SVM using the RBF kernel with $sig2=100$.}
+  \label{fig:FSsig100}
+\end{figure}
+
+We can attempt to apply $L_0$ regularisation to some initial FS-LS-SVM solution iteratively to try and obtain a sparser solution and hence reduce overfitting. Fig.~\ref{fig:errorEstimComp} shows that the error estimate between just FS-LS-SVM and the regularised solution is about the same. Fig.~\ref{fig:TimeEstimComp} also shows that on this shuttle dataset the time performance for the computations is very similar. However, as expected, regularisation reduces the number of support vectors required to describe the same solution substantially, as can be seen in Fig.~\ref{fig:SVestimComp}.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{errorEstimComp.png}
+  \caption{FS-LS-SVM on its own versus FS-LS-SVM followed by $L_0$ regularisation - error performance.}
+  \label{fig:errorEstimComp}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{SVestimComp.png}
+  \caption{FS-LS-SVM on its own versus FS-LS-SVM followed by $L_0$ regularisation - number of support vectors.}
+  \label{fig:SVestimComp}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{TimeEstimComp.png}
+  \caption{FS-LS-SVM on its own versus FS-LS-SVM followed by $L_0$ regularisation - time to compute.}
+  \label{fig:TimeEstimComp}
+\end{figure}
+
+
+
+
 \bibliographystyle{acm}
 \bibliography{SVMbib}
 \end{document}
