@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.17)  20 JUN 2019 12:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.17)  20 JUN 2019 14:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -710,18 +710,74 @@ Package pdftex.def Info: TimeEstimComp.png  used on input line 442.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-(./SVMreport.bbl [13 <./FSsig01.png (PNG copy)> <./FSsig100.png (PNG copy)>])
-[14 <./errorEstimComp.png (PNG copy)> <./SVestimComp.png (PNG copy)> <./TimeEst
-imComp.png (PNG copy)>] (./SVMreport.aux)
+<digitsDenoise-kernel.png, id=85, 1124.2pt x 843.15pt>
+File: digitsDenoise-kernel.png Graphic file (type png)
+<use digitsDenoise-kernel.png>
+Package pdftex.def Info: digitsDenoise-kernel.png  used on input line 452.
+(pdftex.def)             Requested size: 216.81pt x 162.60599pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<digitsDenoise-linear.png, id=86, 1124.2pt x 843.15pt>
+File: digitsDenoise-linear.png Graphic file (type png)
+<use digitsDenoise-linear.png>
+Package pdftex.def Info: digitsDenoise-linear.png  used on input line 459.
+(pdftex.def)             Requested size: 216.81pt x 162.60599pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<digitsDenoise-kernel-sigma30.png, id=87, 1124.2pt x 843.15pt>
+File: digitsDenoise-kernel-sigma30.png Graphic file (type png)
+<use digitsDenoise-kernel-sigma30.png>
+Package pdftex.def Info: digitsDenoise-kernel-sigma30.png  used on input line 4
+68.
+(pdftex.def)             Requested size: 216.81pt x 162.60599pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<digitsDenoise-linear-sigma30.png, id=88, 1124.2pt x 843.15pt>
+File: digitsDenoise-linear-sigma30.png Graphic file (type png)
+<use digitsDenoise-linear-sigma30.png>
+Package pdftex.def Info: digitsDenoise-linear-sigma30.png  used on input line 4
+75.
+(pdftex.def)             Requested size: 216.81pt x 162.60599pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<digitsDenoise-kernel-sigma001.png, id=89, 1124.2pt x 843.15pt>
+File: digitsDenoise-kernel-sigma001.png Graphic file (type png)
+<use digitsDenoise-kernel-sigma001.png>
+Package pdftex.def Info: digitsDenoise-kernel-sigma001.png  used on input line 
+485.
+(pdftex.def)             Requested size: 216.81pt x 162.60599pt.
+[13 <./FSsig01.png (PNG copy)> <./FSsig100.png (PNG copy)>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<digitsDenoise-linear-sigma001.png, id=94, 1124.2pt x 843.15pt>
+File: digitsDenoise-linear-sigma001.png Graphic file (type png)
+<use digitsDenoise-linear-sigma001.png>
+Package pdftex.def Info: digitsDenoise-linear-sigma001.png  used on input line 
+492.
+(pdftex.def)             Requested size: 216.81pt x 162.60599pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+(./SVMreport.bbl [14 <./errorEstimComp.png (PNG copy)> <./SVestimComp.png (PNG 
+copy)> <./TimeEstimComp.png (PNG copy)>]) [15 <./digitsDenoise-kernel.png (PNG 
+copy)> <./digitsDenoise-linear.png (PNG copy)> <./digitsDenoise-kernel-sigma30.
+png (PNG copy)>] [16 <./digitsDenoise-linear-sigma30.png (PNG copy)> <./digitsD
+enoise-kernel-sigma001.png (PNG copy)> <./digitsDenoise-linear-sigma001.png (PN
+G copy)>] (./SVMreport.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5932 strings out of 492616
- 81415 string characters out of 6129481
- 246505 words of memory out of 5000000
- 9736 multiletter control sequences out of 15000+600000
+ 5968 strings out of 492616
+ 82609 string characters out of 6129481
+ 246565 words of memory out of 5000000
+ 9766 multiletter control sequences out of 15000+600000
  13234 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,6n,56p,954b,1457s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -741,10 +797,10 @@ ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
 ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texliv
 e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive
 /2019/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on SVMreport.pdf (14 pages, 1360451 bytes).
+Output written on SVMreport.pdf (16 pages, 3052873 bytes).
 PDF statistics:
- 142 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
+ 154 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 171 words of extra memory for PDF output out of 10000 (max. 10000000)
 

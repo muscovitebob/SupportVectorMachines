@@ -444,6 +444,55 @@ We can attempt to apply $L_0$ regularisation to some initial FS-LS-SVM solution 
   \label{fig:TimeEstimComp}
 \end{figure}
 
+\subsection{Digits denoising using kernel PCA}
+We can attempt to denoise a collection of handwritten Arabic numbers that have variable amounts of noise added onto them. We control the $\sigma$ parameter using a multiplicative factor and the same for the noise parameter. Fig.~\ref{fig:digitsDenoise-kernel} and \ref{fig:digitsDenoise-linear} depict the denoising done using kernel PCA and linear PCA, respectively, with the parameters being $0.7$ and $1$, respectively. It appears that at this rather substantial level of noise kernel PCA is able to denoise much better than linear.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{digitsDenoise-kernel.png}
+  \caption{Denoising of handwritten Arabic numerals using a kernel PCA with $\sigma$ factor $0.7$.}
+  \label{fig:digitsDenoise-kernel}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{digitsDenoise-linear.png}
+  \caption{Denoising of handwritten Arabic numerals using a linear PCA with $\sigma$ factor $0.7$.}
+  \label{fig:digitsDenoise-linear}
+\end{figure}
+
+What influence does the $\sigma$ parameter have on denoising? If we make the multiplicative factor equal $30$, we get results shown in Fig.~\ref{fig:digitsDenoise-kernel-sigma30} for kernel PCA and Fig.~\ref{fig:digitsDenoise-linear-sigma30} for linear PCA. The performance of both methods appears poor at this high $\sigma$ value, highlighting the need for careful parameter picking.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{digitsDenoise-kernel-sigma30.png}
+  \caption{Denoising of handwritten Arabic numerals using a kernel PCA with $\sigma$ factor $30$.}
+  \label{fig:digitsDenoise-kernel-sigma30}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{digitsDenoise-linear-sigma30.png}
+  \caption{Denoising of handwritten Arabic numerals using a linear PCA with $\sigma$ factor $30$.}
+  \label{fig:digitsDenoise-linear-sigma30}
+\end{figure}
+
+
+For very small values of $\sigma$, we can use a multiplicative factor of $0.01$ to see the effect. For kernel PCA this is depicted in Fig.~\ref{fig:digitsDenoise-kernel-sigma001} and for linear PCA in Fig.~\ref{fig:digitsDenoise-linear-sigma001}. Here, kernel PCA appears to perform well at denoising, but in actuality the denoised numerals do not correspond to the original numerals. If we did not know the originals beforehand, this highlights the importance of having a test set.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{digitsDenoise-kernel-sigma001.png}
+  \caption{Denoising of handwritten Arabic numerals using a kernel PCA with $\sigma$ factor $0.01$.}
+  \label{fig:digitsDenoise-kernel-sigma001}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{digitsDenoise-linear-sigma001.png}
+  \caption{Denoising of handwritten Arabic numerals using a linear PCA with $\sigma$ factor $0.01$.}
+  \label{fig:digitsDenoise-linear-sigma001}
+\end{figure}
 
 
 
