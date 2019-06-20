@@ -2,14 +2,13 @@
 \citation{pelckmansLSSVMlabMATLABToolbox}
 \citation{valyonRobustLSSVMRegression2007}
 \citation{valyonRobustLSSVMRegression2007}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Exercise I: Basic support vector machines}{1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Exercise II: Function estimation and time series prediction}{1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Support vector machine for function estimation}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Exercise II: Function estimation and time series prediction}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Support vector machine for function estimation}{1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces A linear least squares regression fitted to a data cloud of 43 points with parameters $C=0.5$ and $e=0.1$. Given these parameters, only 23 points are used as support vectors, labelled in red.}}{2}\protected@file@percent }
 \newlabel{fig:uiregress}{{1}{2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces A third degree polynomial least squares regression fitted to a data wave of 46 points with parameters $C=3$ and $e=0.06$. Given these parameters, only 26 points are used as support vectors, labelled in red.}}{2}\protected@file@percent }
 \newlabel{fig:uiregressPoly}{{2}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Sinc function}{2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Sinc function}{2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces A plot of LS-SVM RBF kernel predictor performance over a range of parameters.}}{3}\protected@file@percent }
 \newlabel{fig:crossvalidatedRBFSinc}{{3}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces A plot of LS-SVM RBF kernel predictor performance over a range of parameters, on the test set.}}{3}\protected@file@percent }
@@ -18,35 +17,59 @@
 \citation{MacKay91bayesianinterpolation}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces A plot of LS-SVM RBF kernel predictor number five out of all evaluated.}}{4}\protected@file@percent }
 \newlabel{fig:fifthModelPlot}{{5}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Bayesian tuning}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Bayesian tuning}{4}\protected@file@percent }
 \citation{wipfNewViewAutomatic}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The most probable model derived using Bayesian inference, with computed error bars.}}{5}\protected@file@percent }
 \newlabel{fig:bayesianErrorbars}{{6}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Automatic Relevance Determination}{5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Robust regression}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Automatic Relevance Determination}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Robust regression}{5}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A noisy sinc dataset.}}{6}\protected@file@percent }
 \newlabel{fig:noisyData}{{7}{6}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces The result of fitting a non-robust LS-SVM model to the noisy sinc data.}}{6}\protected@file@percent }
 \newlabel{fig:naiveNonRob}{{8}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}Time Series Prediction with Logmap Data}{6}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces An LS-SVM regression with a Huber robust loss function on the noisy sinc data.}}{7}\protected@file@percent }
 \newlabel{fig:whuberRobust}{{9}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces An LS-SVM regression with Hamper weights on the noisy sinc data.}}{7}\protected@file@percent }
 \newlabel{fig:hamperRobust}{{10}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces An LS-SVM regression with myriad weights on the noisy sinc data.}}{7}\protected@file@percent }
 \newlabel{fig:myriadRobust}{{11}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Time Series Prediction with Logmap Data}{7}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces An LS-SVM regression with Logistic weights on the noisy sinc data.}}{8}\protected@file@percent }
 \newlabel{fig:logisticRobust}{{12}{8}}
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces The result of applying a non-optimised time series prediction model to the logmap dataset, with the test set in black and the predictions in red.}}{8}\protected@file@percent }
 \newlabel{fig:logmapNaive}{{13}{8}}
-\bibstyle{acm}
-\bibdata{SVMbib}
-\bibcite{MacKay91bayesianinterpolation}{1}
-\bibcite{pelckmansLSSVMlabMATLABToolbox}{2}
-\bibcite{valyonRobustLSSVMRegression2007}{3}
-\bibcite{wipfNewViewAutomatic}{4}
+\citation{mikaKernelPCADeNoising}
 \@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces One of the models resulting from grid search, with the model parameters initially coming from Bayesian inference, with the test set in black and the predictions in red.}}{9}\protected@file@percent }
 \newlabel{fig:model8Logmap}{{14}{9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Time Series Prediction with Santa Fe Data}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7}Time Series Prediction with Santa Fe Data}{9}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces The result of first optimising parameters using Bayesian inference and then doing a grid search of model orders with the Santa Fe dataset, with the test set in black and the predictions in red.}}{9}\protected@file@percent }
 \newlabel{fig:order50Santa}{{15}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Exercise III: Unsupervised Learning and Large Scale Problems}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Kernel principal component analysis}{9}\protected@file@percent }
+\citation{mikaKernelPCADeNoising}
+\citation{alamHyperparameterSelectionKernel2014}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces KPCA with RBF kernel, $sig2 = 0.4$ and Lanczos approximation, using the first 4 PCs.}}{10}\protected@file@percent }
+\newlabel{fig:lanc4PC}{{16}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces KPCA with RBF kernel, $sig2 = 0.4$ and Lanczos approximation, using the first 6 PCs.}}{10}\protected@file@percent }
+\newlabel{fig:lanc6PC}{{17}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Spectral clustering}{10}\protected@file@percent }
+\bibstyle{acm}
+\bibdata{SVMbib}
+\bibcite{alamHyperparameterSelectionKernel2014}{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces KPCA with RBF kernel, $sig2 = 0.4$ and Lanczos approximation, using the first 10 PCs.}}{11}\protected@file@percent }
+\newlabel{fig:lanc10PC}{{18}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces KPCA with RBF kernel, $sig2 = 0.4$ and Lanczos approximation, using the first 15 PCs.}}{11}\protected@file@percent }
+\newlabel{fig:lanc15PC}{{19}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Spectral clustering using the RBF kernel with $sig2=0.05$.}}{11}\protected@file@percent }
+\newlabel{fig:rings005}{{20}{11}}
+\bibcite{MacKay91bayesianinterpolation}{2}
+\bibcite{mikaKernelPCADeNoising}{3}
+\bibcite{pelckmansLSSVMlabMATLABToolbox}{4}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Spectral clustering using the RBF kernel with $sig2=0.02$.}}{12}\protected@file@percent }
+\newlabel{fig:rings002}{{21}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Spectral clustering using the RBF kernel with $sig2=0.01$.}}{12}\protected@file@percent }
+\newlabel{fig:rings001}{{22}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Spectral clustering using the RBF kernel with $sig2=0.001$.}}{12}\protected@file@percent }
+\newlabel{fig:rings0001}{{23}{12}}
+\bibcite{valyonRobustLSSVMRegression2007}{5}
+\bibcite{wipfNewViewAutomatic}{6}

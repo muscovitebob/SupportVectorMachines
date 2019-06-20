@@ -1,9 +1,21 @@
 \begin{thebibliography}{1}
 
+\bibitem{alamHyperparameterSelectionKernel2014}
+{\sc {Alam}}.
+\newblock Hyperparameter {{Selection}} in {{Kernel Principal Component
+  Analysis}}.
+\newblock {\em Journal of Computer Science 10}, 7 (July 2014), 1139--1150.
+
 \bibitem{MacKay91bayesianinterpolation}
 {\sc MacKay, D.~J.}
 \newblock Bayesian {{Interpolation}}.
 \newblock {\em NEURAL COMPUTATION 4\/} (1991), 415--447.
+
+\bibitem{mikaKernelPCADeNoising}
+{\sc Mika, S., Scholkopf, B., Smola, A., Muller, K.-R., Scholz, M., and
+  Riitsch, G.}
+\newblock Kernel {{PCA}} and {{De}}-{{Noising}} in {{Feature Spaces}}.
+\newblock 7.
 
 \bibitem{pelckmansLSSVMlabMATLABToolbox}
 {\sc Pelckmans, K., Suykens, J. A.~K., Gestel, T.~V., Brabanter, J.~D., Lukas,

@@ -11,7 +11,6 @@
 
 \begin{document}
 \maketitle
-\section{Exercise I: Basic support vector machines}
 \section{Exercise II: Function estimation and time series prediction}
 
 In this exercise I will attempt to explore the least squares support vector machine formulation using the LS-SVM Matlab toolbox \cite{pelckmansLSSVMlabMATLABToolbox}, particularly function estimation and time series prediction. 
@@ -324,6 +323,81 @@ We may use the same strategy to optimise gam, sig and the order parameters on th
   \includegraphics[width=3in]{order50Santa.png}
   \caption{The result of first optimising parameters using Bayesian inference and then doing a grid search of model orders with the Santa Fe dataset, with the test set in black and the predictions in red.}
   \label{fig:order50Santa}
+\end{figure}
+
+\section{Exercise III: Unsupervised Learning and Large Scale Problems}
+\subsection{Kernel principal component analysis}
+Kernel PCA is a dimensionality reduction technique that relies on the fact that it is possible to linearly separate what seems like a non-linearly separable dataset by the addition of extra dimensions. This addition is accomplished using some function that maps our input data into this higher dimensional feature space in which such separation is possible. However, this function and the resulting kernel are not usually mathematically tractable to work with, so we cannot compute the principal components directly (nor indeed any part of the feature space), for example, but we can use the kernel trick to project existing data onto the components. The workaround is possible because what we can do is compute the inner product space of the feature space, which gives us a way of computing linear independence using the Gramian matrix, hence leading to the possibility of projection of the data onto the uncomputed principal components.
+
+Denoising using KPCA works similarly to linear PCA. Because the first $n$ principal components will explain a given amount of variance in their respective orthogonal directions, by applying PCA we can effectively denoise the data by dropping PCs that explain smaller amounts of variance than some threshold we determine, as determined by the eigenvalues corresponding to the PCs. However, a drawback of linear PCA is that by doing so, interesting nonlinearity in the data may be lost. KPCA allows us to use nonlinear features to try and preserve that information, by first using the nonlinear mapping function and then doing linear PCA on the data, but avoiding explicitly computation of the feature space using Mercer theorem to ensure that the kernels we apply are able to have a Gramian matrix \cite{mikaKernelPCADeNoising}.
+
+If we increase the number of principal components, to a certain point we are capturing more genuine variance, so we improve performance. However, we eventually begin incorporating components which are mostly noise. Hence, here performance starts to fall.
+
+We see this readily with KPCA on a toy ying yang dataset. For the Lanczos approximation method, using up to 10 PCs seems to yield an OK denoising, yet at some point above 10 PCs, we capture the noise as well, as can be seen in Fig.~\ref{fig:lanc15PC}.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{lanc4PC.png}
+  \caption{KPCA with RBF kernel, $sig2 = 0.4$ and Lanczos approximation, using the first 4 PCs.}
+  \label{fig:lanc4PC}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{lanc6PC.png}
+  \caption{KPCA with RBF kernel, $sig2 = 0.4$ and Lanczos approximation, using the first 6 PCs.}
+  \label{fig:lanc6PC}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{lanc10PC.png}
+  \caption{KPCA with RBF kernel, $sig2 = 0.4$ and Lanczos approximation, using the first 10 PCs.}
+  \label{fig:lanc10PC}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{lanc15PC.png}
+  \caption{KPCA with RBF kernel, $sig2 = 0.4$ and Lanczos approximation, using the first 15 PCs.}
+  \label{fig:lanc15PC}
+\end{figure}
+
+In order to tune the parameters in this case we can use crossvalidation with the reconstruction error as the measure of the best model \cite{mikaKernelPCADeNoising}. We can use a similar approach to choose the kernel and the number of principal components via crossvalidation, also using the reconstruction error, but of pre-images in original space \cite{alamHyperparameterSelectionKernel2014}.
+
+\subsection{Spectral clustering}
+Spectral clustering uses a similarity matrix computed using some similarity function (kernel function in our case) as a way to observe local structure. We form the Laplacian by substracting the symmetric matrix from the degree matrix (which is diagonal, with each element on the diagonal being the number of edges each vertex defined by the kernel function has). The eigenvectors of the Laplacian matrix are then compute (its spectrum, hence the name). The actual clustering is then done on these eigenvectors, usually using k-means, but other clustering algorithms can be used. 
+
+As the name implies, this is a clustering technique, not a classification technique. Clustering discovers groups within the data based on some metric. Clustering techniques allow us to explore our data. By contrast, in classification we usually already know the groups in our data (these can even be previously discovered via clustering). The objective of classification is to create a classifier that will assign new examples to the groups we already know - that is, prediction.
+
+Attempting spectral clustering with the example interleaved rings dataset, the influence of the similarity metric on clustering can clearly be seen by varying the parameters of our similarity function - that is, the RBF kernel. Starting at $sig2=0.05$ yields a grouping that is only somewhat correct, and is not acceptable if one is most interested in the region where the rings interleave, shown in Fig.~\ref{fig:rings005}. In Fig.~\ref{fig:rings002} and \ref{fig:rings001} we see that $sig2$ in the region of $0.015$ is a good choice, and neatly separates the rings correctly. Choosing a much lower value leads to the similarity function asserting that both rings are part of the same group, as can be seen in Fig.~\ref{fig:rings0001}.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{rings005.png}
+  \caption{Spectral clustering using the RBF kernel with $sig2=0.05$.}
+  \label{fig:rings005}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{rings002.png}
+  \caption{Spectral clustering using the RBF kernel with $sig2=0.02$.}
+  \label{fig:rings002}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{rings001.png}
+  \caption{Spectral clustering using the RBF kernel with $sig2=0.01$.}
+  \label{fig:rings001}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=3in]{rings0001.png}
+  \caption{Spectral clustering using the RBF kernel with $sig2=0.001$.}
+  \label{fig:rings0001}
 \end{figure}
 
 \bibliographystyle{acm}
