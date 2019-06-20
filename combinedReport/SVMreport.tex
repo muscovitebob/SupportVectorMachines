@@ -31,6 +31,7 @@ Using the \texttt{uiregress} graphical command, we can construct toy datasets.
 First, let us create a dataset where a linear classifier is optimal. One such example is a close cloud of points that are intended to have come from a straight line, which we construct to have 43 points. Increasing $e$ above $0.25$ leaves no support vectors, under that the number of support vectors goes up to the number of training points, when $C$ is held fixed at infinity. Decreasing $C$ leads the line to align with the principal direction of the cloud. Setting $C=0.5$ and $e=0.1$ leads to a good fit, shown in \ref{fig:uiregress}. Noticeably, the sparsity property comes into play here. By setting the $e$ parameter above zero, we ignore errors smaller than this value. Hence, we only use a subset of the training points, achieving a measure of sparseness. This is similar to the $\epsilon$-insensitive loss function in standard SVM \cite{valyonRobustLSSVMRegression2007}.
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{uiregressFinal.png}
   \caption{A linear least squares regression fitted to a data cloud of 43 points with parameters $C=0.5$ and $e=0.1$. Given these parameters, only 23 points are used as support vectors, labelled in red.}
   \label{fig:uiregress}
@@ -39,6 +40,7 @@ First, let us create a dataset where a linear classifier is optimal. One such ex
 A more challenging toy dataset is one that a linear kernel cannot approximate well. Let us construct one with 46 points that is wave-like. Here, a polynomial kerne of third degree, with $C=3$ and $e=0.06$, fits quite well with quite some sparsity.
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{uiregressPoly.png}
   \caption{A third degree polynomial least squares regression fitted to a data wave of 46 points with parameters $C=3$ and $e=0.06$. Given these parameters, only 26 points are used as support vectors, labelled in red.}
   \label{fig:uiregressPoly}
@@ -85,6 +87,7 @@ perfList = cellfun(@(cell) crossvalidate({ Xtrain , Ytrain , 'f', ...
 A plot of this resulting performance is provided in Fig.~\ref{fig:crossvalidatedRBFSinc}.
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{crossvalidatedRBFSinc.png}
   \caption{A plot of LS-SVM RBF kernel predictor performance over a range of parameters.}
   \label{fig:crossvalidatedRBFSinc}
@@ -109,6 +112,7 @@ test_mses = cellfun(@(cell) immse(cell, Ytest), Yest);
 A plot of the test set performance shown in Fig.~\ref{fig:RBFtestsetPerf} reveals that the fifth model has the best performance.
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{RBFtestsetPerf.png}
   \caption{A plot of LS-SVM RBF kernel predictor performance over a range of parameters, on the test set.}
   \label{fig:RBFtestsetPerf}
@@ -117,6 +121,7 @@ A plot of the test set performance shown in Fig.~\ref{fig:RBFtestsetPerf} reveal
 It seems the fifth model fits the best on the test case. We may visualise the fifth model on the test data points., shown in Fig.~\ref{fig:fifthModelPlot}. Here the hollow points are the test set that was not used to fit the data.
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{fifthModelPlot.png}
   \caption{A plot of LS-SVM RBF kernel predictor number five out of all evaluated.}
   \label{fig:fifthModelPlot}
@@ -170,6 +175,7 @@ sigErrs = bay_errorbar({Xtrain, Ytrain, 'f', bayOptims{2}.gam, bayOptims{3}.kern
 The model is shown in Fig.~\ref{fig:bayesianErrorbars}.
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{bayesianErrorbars.png}
   \caption{The most probable model derived using Bayesian inference, with computed error bars.}
   \label{fig:bayesianErrorbars}
@@ -201,6 +207,7 @@ Y(outSet1) = 0.7 * 0.3 + rand(size(outSet1)); Y(outSet2) = 1.5 * 0.2 + rand(size
 The resulting dataset is shown in Fig.~\ref{fig:noisyData}.
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{noisyData.png}
   \caption{A noisy sinc dataset.}
   \label{fig:noisyData}
@@ -215,6 +222,7 @@ tunedNaiveModel = tunelssvm(Model, 'simplex', ...
 \end{lstlisting}
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{naiveNonRob.png}
   \caption{The result of fitting a non-robust LS-SVM model to the noisy sinc data.}
   \label{fig:naiveNonRob}
@@ -225,6 +233,7 @@ Within the outlier regions, the estimation is very far from the true sinc functi
 By contrast, a robust model should minimize the influence of support vectors with big errors on the final function estimate. A robust Huber's weights function model on this data will generate warning about a lack of inverse but will nonetheless produce a fit. As can be seen in Fig.~\ref{fig:whuberRobust}, this is very satisfactory and practically ignores the outliers.
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{whuberRobust.png}
   \caption{An LS-SVM regression with a Huber robust loss function on the noisy sinc data.}
   \label{fig:whuberRobust}
@@ -235,18 +244,21 @@ Here the MSE function is used in the naive formulation - since the RMSE will squ
 Other weight functions produce varying results. Hamper weights leads to a good approximation of the underlying function as seen in Fig.~\ref{fig:hamperRobust}, slightly better than the Huber weight fit. Logistic weights produce approximately the same result as Huber, seen in Fig.~\ref{fig:logisticRobust}. Myriad weights, on the other hand, appear to be no better than the naive fit, seen in Fig.~\ref{ig:myriadRobust}.
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{robustHamper.png}
   \caption{An LS-SVM regression with Hamper weights on the noisy sinc data.}
   \label{fig:hamperRobust}
 \end{figure}
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{robustMyriad.png}
   \caption{An LS-SVM regression with myriad weights on the noisy sinc data.}
   \label{fig:myriadRobust}
 \end{figure}
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{robustLogistic.png}
   \caption{An LS-SVM regression with Logistic weights on the noisy sinc data.}
   \label{fig:logisticRobust}
@@ -274,6 +286,7 @@ prediction = predict({X, Y, 'f', gam, sig2}, Xs , nb);
 This yields predictions on the test set as depicted in Fig.~\ref{fig:logmapNaive}. Even discounting the fact that time series prediction is notoriously difficult, this is very poor.
 
 \begin{figure}[h!]
+\centering
   \includegraphics[width=3in]{logmapNaive.png}
   \caption{The result of applying a non-optimised time series prediction model to the logmap dataset, with the test set in black and the predictions in red.}
   \label{fig:logmapNaive}
