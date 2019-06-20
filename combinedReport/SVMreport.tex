@@ -222,7 +222,7 @@ tunedNaiveModel = tunelssvm(Model, 'simplex', ...
 
 
 Within the outlier regions, the estimation is very far from the true sinc function, being highly influenced by just three points in each region. This also has effects outside the outlier regions. 
-By contrast, a robust model should minimize the influence of support vectors with big errors on the final function estimate. A robust Huber's loss function model on this data will generate warning about a lack of inverse but will nonetheless produce a fit. As can be seen in Fig.~\ref{fig:whuberRobust}, this is very satisfactory and practically ignores the outliers.
+By contrast, a robust model should minimize the influence of support vectors with big errors on the final function estimate. A robust Huber's weights function model on this data will generate warning about a lack of inverse but will nonetheless produce a fit. As can be seen in Fig.~\ref{fig:whuberRobust}, this is very satisfactory and practically ignores the outliers.
 
 \begin{figure}[h!]
   \includegraphics[width=3in]{whuberRobust.png}
@@ -231,6 +231,28 @@ By contrast, a robust model should minimize the influence of support vectors wit
 \end{figure}
 
 Here the MSE function is used in the naive formulation - since the RMSE will square the residuals before summing them, this amplifies the influence of outliers. By contrast, MAE used in the robust regression penalizes large errors.
+
+Other weight functions produce varying results. Hamper weights leads to a good approximation of the underlying function as seen in Fig.~\ref{fig:hamperRobust}, slightly better than the Huber weight fit. Logistic weights produce approximately the same result as Huber, seen in Fig.~\ref{fig:logisticRobust}. Myriad weights, on the other hand, appear to be no better than the naive fit, seen in Fig.~\ref{ig:myriadRobust}.
+
+\begin{figure}[h!]
+  \includegraphics[width=3in]{robustHamper.png}
+  \caption{An LS-SVM regression with Hamper weights on the noisy sinc data.}
+  \label{fig:hamperRobust}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[width=3in]{robustMyriad.png}
+  \caption{An LS-SVM regression with myriad weights on the noisy sinc data.}
+  \label{fig:myriadRobust}
+\end{figure}
+
+\begin{figure}[h!]
+  \includegraphics[width=3in]{robustLogistic.png}
+  \caption{An LS-SVM regression with Logistic weights on the noisy sinc data.}
+  \label{fig:logisticRobust}
+\end{figure}
+
+
 
 \subsection{Time Series Prediction with Logmap Data}
 Time series prediction as done here is nonlinear autoregression exogenous (NARX) modelling. That means that we create a model that uses both the previous values of the dimension of interest and some other, exogenous, variables to predict the future.

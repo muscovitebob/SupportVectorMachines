@@ -68,33 +68,8 @@ plotlssvm(tunedNaiveModel)
 % huber
 model = initlssvm(X, Y, 'f', [], [], 'RBF_kernel');
 loss = 'whuber';
-modelLoss1 = tunelssvm(model, 'simplex', 'rcrossvalidatelssvm', {10, 'mae'}, loss);
-modelLoss1Tr = robustlssvm(modelLoss1);
-plotlssvm(modelLoss1Tr)
+modelLoss1 = tunelssvm(model, 'simplex', 'rcrossvalidatelssvm, {10, 'mae'}, loss);
 
-% hampel
-
-model = initlssvm(X, Y, 'f', [], [], 'RBF_kernel');
-loss = 'whampel';
-modelLoss1 = tunelssvm(model, 'simplex', 'rcrossvalidatelssvm', {10, 'mae'}, loss);
-modelLoss1Tr = robustlssvm(modelLoss1);
-plotlssvm(modelLoss1Tr)
-
-% logistic
-
-model = initlssvm(X, Y, 'f', [], [], 'RBF_kernel');
-loss = 'wlogistic';
-modelLoss1 = tunelssvm(model, 'simplex', 'rcrossvalidatelssvm', {10, 'mae'}, loss);
-modelLoss1Tr = robustlssvm(modelLoss1);
-plotlssvm(modelLoss1Tr)
-
-% myriad
-
-model = initlssvm(X, Y, 'f', [], [], 'RBF_kernel');
-loss = 'wmyriad';
-modelLoss1 = tunelssvm(model, 'simplex', 'rcrossvalidatelssvm', {10, 'mae'}, loss);
-modelLoss1Tr = robustlssvm(modelLoss1);
-plotlssvm(modelLoss1Tr)
 
 % time series prediction
 % logmap

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.17)  19 JUN 2019 21:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.17)  20 JUN 2019 08:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -481,15 +481,12 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 13.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-
-LaTeX Warning: Citation `pelckmansLSSVMlabMATLABToolbox' on page 1 undefined on
- input line 17.
-
 <uiregressFinal.png, id=1, 495.8525pt x 373.395pt>
 File: uiregressFinal.png Graphic file (type png)
 <use uiregressFinal.png>
 Package pdftex.def Info: uiregressFinal.png  used on input line 34.
 (pdftex.def)             Requested size: 216.81pt x 163.26305pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -530,30 +527,18 @@ Package pdftex.def Info: fifthModelPlot.png  used on input line 120.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [3 <./crossvalidatedRBFSinc.png (PNG copy)> <./RBFtestsetPerf.png (PNG copy)>]
-
-LaTeX Warning: Citation `MacKay91bayesianinterpolation' on page 4 undefined on 
-input line 139.
-
-
-LaTeX Warning: Citation `MacKay91bayesianinterpolation' on page 4 undefined on 
-input line 151.
-
 [4 <./fifthModelPlot.png (PNG copy)>]
 <bayesianErrorbars.png, id=37, 476.982pt x 393.6306pt>
 File: bayesianErrorbars.png Graphic file (type png)
 <use bayesianErrorbars.png>
 Package pdftex.def Info: bayesianErrorbars.png  used on input line 173.
 (pdftex.def)             Requested size: 216.81pt x 178.92201pt.
-
-
-LaTeX Warning: Citation `wipfNewViewAutomatic' on page 5 undefined on input lin
-e 189.
-
 <noisyData.png, id=38, 463.4916pt x 363.2772pt>
 File: noisyData.png Graphic file (type png)
 <use noisyData.png>
 Package pdftex.def Info: noisyData.png  used on input line 204.
 (pdftex.def)             Requested size: 216.81pt x 169.931pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -572,33 +557,56 @@ Package pdftex.def Info: whuberRobust.png  used on input line 228.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[6 <./noisyData.png (PNG copy)> <./naiveNonRob.png (PNG copy)>]
 
-LaTeX Warning: Reference `fig:logmapNaive' on page 7 undefined on input line 25
-0.
+LaTeX Warning: Reference `ig:myriadRobust' on page 6 undefined on input line 23
+5.
 
-<logmapNaive.png, id=47, 1124.2pt x 843.15pt>
+<robustHamper.png, id=44, 1124.2pt x 843.15pt>
+File: robustHamper.png Graphic file (type png)
+<use robustHamper.png>
+Package pdftex.def Info: robustHamper.png  used on input line 238.
+(pdftex.def)             Requested size: 216.81pt x 162.60599pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<robustMyriad.png, id=45, 1124.2pt x 843.15pt>
+File: robustMyriad.png Graphic file (type png)
+<use robustMyriad.png>
+Package pdftex.def Info: robustMyriad.png  used on input line 244.
+(pdftex.def)             Requested size: 216.81pt x 162.60599pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<robustLogistic.png, id=46, 1124.2pt x 843.15pt>
+File: robustLogistic.png Graphic file (type png)
+<use robustLogistic.png>
+Package pdftex.def Info: robustLogistic.png  used on input line 250.
+(pdftex.def)             Requested size: 216.81pt x 162.60599pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6 <./noisyData.png (PNG copy)> <./naiveNonRob.png (PNG copy)>] [7 <./whuberRob
+ust.png (PNG copy)> <./robustHamper.png (PNG copy)> <./robustMyriad.png (PNG co
+py)>]
+<logmapNaive.png, id=54, 1124.2pt x 843.15pt>
 File: logmapNaive.png Graphic file (type png)
 <use logmapNaive.png>
-Package pdftex.def Info: logmapNaive.png  used on input line 253.
+Package pdftex.def Info: logmapNaive.png  used on input line 277.
 (pdftex.def)             Requested size: 216.81pt x 162.60599pt.
-(./SVMreport.bbl) [7 <./whuberRobust.png (PNG copy)> <./logmapNaive.png (PNG co
-py)>] (./SVMreport.aux)
+ (./SVMreport.bbl) [8 <./robustLogistic.png (PNG copy)> <./logmapNaive.png (PNG
+ copy)>] (./SVMreport.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 5810 strings out of 492616
- 79271 string characters out of 6129481
- 222306 words of memory out of 5000000
- 9632 multiletter control sequences out of 15000+600000
+ 5832 strings out of 492616
+ 79736 string characters out of 6129481
+ 222351 words of memory out of 5000000
+ 9651 multiletter control sequences out of 15000+600000
  13234 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,56p,930b,1726s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,6n,56p,930b,1435s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
@@ -615,10 +623,10 @@ ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
 ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texliv
 e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive
 /2019/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on SVMreport.pdf (7 pages, 541833 bytes).
+Output written on SVMreport.pdf (8 pages, 659081 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
+ 108 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

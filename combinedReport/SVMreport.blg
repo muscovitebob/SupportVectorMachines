@@ -3,44 +3,47 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: SVMreport.aux
 The style file: acm.bst
 Database file #1: SVMbib.bib
-You've used 1 entry,
+Warning--empty journal in pelckmansLSSVMlabMATLABToolbox
+Warning--empty journal in wipfNewViewAutomatic
+You've used 4 entries,
             2253 wiz_defined-function locations,
-            535 strings with 4071 characters,
-and the built_in function-call counts, 279 in all, are:
-= -- 24
-> -- 12
+            551 strings with 4630 characters,
+and the built_in function-call counts, 1212 in all, are:
+= -- 110
+> -- 73
 < -- 0
-+ -- 6
-- -- 4
-* -- 24
-:= -- 54
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 5
++ -- 32
+- -- 26
+* -- 96
+:= -- 223
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 25
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 9
-empty$ -- 22
-format.name$ -- 4
-if$ -- 53
+cite$ -- 6
+duplicate$ -- 34
+empty$ -- 79
+format.name$ -- 26
+if$ -- 233
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 2
-pop$ -- 3
+int.to.str$ -- 4
+missing$ -- 4
+newline$ -- 23
+num.names$ -- 8
+pop$ -- 21
 preamble$ -- 1
-purify$ -- 4
+purify$ -- 21
 quote$ -- 0
-skip$ -- 5
+skip$ -- 18
 stack$ -- 0
-substring$ -- 9
-swap$ -- 2
+substring$ -- 52
+swap$ -- 6
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
-warning$ -- 0
-while$ -- 3
-width$ -- 2
-write$ -- 12
+type$ -- 16
+warning$ -- 2
+while$ -- 12
+width$ -- 5
+write$ -- 40
+(There were 2 warnings)

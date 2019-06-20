@@ -1,8 +1,25 @@
 \begin{thebibliography}{1}
 
+\bibitem{MacKay91bayesianinterpolation}
+{\sc MacKay, D.~J.}
+\newblock Bayesian {{Interpolation}}.
+\newblock {\em NEURAL COMPUTATION 4\/} (1991), 415--447.
+
+\bibitem{pelckmansLSSVMlabMATLABToolbox}
+{\sc Pelckmans, K., Suykens, J. A.~K., Gestel, T.~V., Brabanter, J.~D., Lukas,
+  L., Hamers, B., Moor, B.~D., and Vandewalle, J.}
+\newblock {{LS}}-{{SVMlab}}: A {{MATLAB}}/{{C}} toolbox for {{Least Squares
+  Support Vector Machines}}.
+\newblock 8.
+
 \bibitem{valyonRobustLSSVMRegression2007}
 {\sc Valyon, J., and Horv{\'a}th, G.}
 \newblock A {{Robust LS}}-{{SVM Regression}}.
 \newblock {\em Int Journal of Comp and Infor Engineering 1}, 7 (2007), 6.
+
+\bibitem{wipfNewViewAutomatic}
+{\sc Wipf, D.~P., and Nagarajan, S.~S.}
+\newblock A {{New View}} of {{Automatic Relevance Determination}}.
+\newblock 8.
 
 \end{thebibliography}
